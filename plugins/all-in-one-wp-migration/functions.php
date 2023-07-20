@@ -52,24 +52,6 @@ function ai1wm_storage_path( $params ) {
 	return $storage;
 }
 
-/**
- * Get backup absolute path
- *
- * @param  array  $params Request parameters
- * @return string
- */
-function ai1wm_backup_path( $params ) {
-	if ( empty( $params['archive'] ) ) {
-		throw new Ai1wm_Archive_Exception( __( 'Unable to locate archive path. <a href="https://help.servmask.com/knowledgebase/invalid-archive-path/" target="_blank">Technical details</a>', AI1WM_PLUGIN_NAME ) );
-	}
-
-	// Validate archive path
-	if ( ai1wm_validate_file( $params['archive'] ) !== 0 ) {
-		throw new Ai1wm_Archive_Exception( __( 'Your archive file name contains invalid characters. It cannot contain: < > : " | ? * \0. <a href="https://help.servmask.com/knowledgebase/invalid-archive-name/" target="_blank">Technical details</a>', AI1WM_PLUGIN_NAME ) );
-	}
-
-	return AI1WM_BACKUPS_PATH . DIRECTORY_SEPARATOR . $params['archive'];
-}
 
 /**
  * Validates a file name and path against an allowed set of rules

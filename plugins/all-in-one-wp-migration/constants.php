@@ -45,22 +45,6 @@ define( 'AI1WM_PLUGIN_NAME', 'all-in-one-wp-migration' );
 // ================
 // = Storage Path =
 // ================
-define( 'AI1WM_STORAGE_PATH', AI1WM_PATH . DIRECTORY_SEPARATOR . 'storage' );
-
-// ==================
-// = Error Log Path =
-// ==================
-define( 'AI1WM_ERROR_FILE', AI1WM_STORAGE_PATH . DIRECTORY_SEPARATOR . 'error.log' );
-
-// ===============
-// = Status Path =
-// ===============
-define( 'AI1WM_STATUS_FILE', AI1WM_STORAGE_PATH . DIRECTORY_SEPARATOR . 'status.js' );
-
-// ============
-// = Lib Path =
-// ============
-define( 'AI1WM_LIB_PATH', AI1WM_PATH . DIRECTORY_SEPARATOR . 'lib' );
 
 // ===================
 // = Controller Path =

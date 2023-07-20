@@ -26,64 +26,11 @@ class WPCF7_Contact_Form_List_Table extends WP_List_Table {
 		) );
 	}
 
-	public function prepare_items() {
-		$current_screen = get_current_screen();
-		$per_page = $this->get_items_per_page( 'wpcf7_contact_forms_per_page' );
 
-		$args = array(
-			'posts_per_page' => $per_page,
-			'orderby' => 'title',
-			'order' => 'ASC',
-			'offset' => ( $this->get_pagenum() - 1 ) * $per_page,
-		);
 
-		if ( ! empty( $_REQUEST['s'] ) ) {
-			$args['s'] = $_REQUEST['s'];
-		}
 
-		if ( ! empty( $_REQUEST['orderby'] ) ) {
-			if ( 'title' == $_REQUEST['orderby'] ) {
-				$args['orderby'] = 'title';
-			} elseif ( 'author' == $_REQUEST['orderby'] ) {
-				$args['orderby'] = 'author';
-			} elseif ( 'date' == $_REQUEST['orderby'] ) {
-				$args['orderby'] = 'date';
-			}
-		}
 
-		if ( ! empty( $_REQUEST['order'] ) ) {
-			if ( 'asc' == strtolower( $_REQUEST['order'] ) ) {
-				$args['order'] = 'ASC';
-			} elseif ( 'desc' == strtolower( $_REQUEST['order'] ) ) {
-				$args['order'] = 'DESC';
-			}
-		}
 
-		$this->items = WPCF7_ContactForm::find( $args );
-
-		$total_items = WPCF7_ContactForm::count();
-		$total_pages = ceil( $total_items / $per_page );
-
-		$this->set_pagination_args( array(
-			'total_items' => $total_items,
-			'total_pages' => $total_pages,
-			'per_page' => $per_page,
-		) );
-	}
-
-	public function get_columns() {
-		return get_column_headers( get_current_screen() );
-	}
-
-	protected function get_sortable_columns() {
-		$columns = array(
-			'title' => array( 'title', true ),
-			'author' => array( 'author', false ),
-			'date' => array( 'date', false ),
-		);
-
-		return $columns;
-	}
 
 	protected function get_bulk_actions() {
 		$actions = array(

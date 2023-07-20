@@ -18,41 +18,6 @@ class WPCF7_Editor {
 		}
 	}
 
-	public function display() {
-		if ( empty( $this->panels ) ) {
-			return;
-		}
-
-		echo '<ul id="contact-form-editor-tabs">';
-
-		foreach ( $this->panels as $panel_id => $panel ) {
-			echo sprintf(
-				'<li id="%1$s-tab"><a href="#%1$s">%2$s</a></li>',
-				esc_attr( $panel_id ),
-				esc_html( $panel['title'] )
-			);
-		}
-
-		echo '</ul>';
-
-		foreach ( $this->panels as $panel_id => $panel ) {
-			echo sprintf(
-				'<div class="contact-form-editor-panel" id="%1$s">',
-				esc_attr( $panel_id )
-			);
-
-			if ( is_callable( $panel['callback'] ) ) {
-				$this->notice( $panel_id, $panel );
-				call_user_func( $panel['callback'], $this->contact_form );
-			}
-
-			echo '</div>';
-		}
-	}
-
-	public function notice( $panel_id, $panel ) {
-		echo '<div class="config-error"></div>';
-	}
 }
 
 function wpcf7_editor_panel_form( $post ) {

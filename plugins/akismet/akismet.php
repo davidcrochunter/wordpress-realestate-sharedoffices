@@ -51,14 +51,7 @@ require_once( AKISMET__PLUGIN_DIR . 'class.akismet.php' );
 require_once( AKISMET__PLUGIN_DIR . 'class.akismet-widget.php' );
 require_once( AKISMET__PLUGIN_DIR . 'class.akismet-rest-api.php' );
 
-add_action( 'init', array( 'Akismet', 'init' ) );
 
-add_action( 'rest_api_init', array( 'Akismet_REST_API', 'init' ) );
-
-if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-	require_once( AKISMET__PLUGIN_DIR . 'class.akismet-admin.php' );
-	add_action( 'init', array( 'Akismet_Admin', 'init' ) );
-}
 
 //add wrapper class around deprecated akismet functions that are referenced elsewhere
 require_once( AKISMET__PLUGIN_DIR . 'wrapper.php' );

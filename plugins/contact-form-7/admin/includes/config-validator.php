@@ -27,32 +27,6 @@ function wpcf7_admin_init_bulk_cv() {
 	);
 }
 
-function wpcf7_admin_menu_change_notice_bulk_cv( $counts ) {
-	$counts['wpcf7'] += 1;
-	return $counts;
-}
-
-function wpcf7_admin_warnings_bulk_cv( $page, $action, $object ) {
-	if ( 'wpcf7' === $page and 'validate' === $action ) {
-		return;
-	}
-
-	$link = wpcf7_link(
-		add_query_arg(
-			array( 'action' => 'validate' ),
-			menu_page_url( 'wpcf7', false )
-		),
-		__( 'Validate Contact Form 7 Configuration', 'contact-form-7' )
-	);
-
-	$message = __( "Misconfiguration leads to mail delivery failure or other troubles. Validate your contact forms now.", 'contact-form-7' );
-
-	echo sprintf(
-		'<div class="notice notice-warning"><p>%1$s &raquo; %2$s</p></div>',
-		esc_html( $message ),
-		$link
-	);
-}
 
 add_action( 'wpcf7_admin_load', 'wpcf7_load_bulk_validate_page', 10, 2 );
 

@@ -16,28 +16,7 @@ function akismet_http_post( $request, $host, $path, $port = 80, $ip = null ) {
 	return Akismet::http_post( $request, $path, $ip ); 
 }
 
-function akismet_microtime() {
-	return Akismet::_get_microtime();
-}
 
-function akismet_delete_old() {
-	return Akismet::delete_old_comments();
-}
-
-function akismet_delete_old_metadata() { 
-	return Akismet::delete_old_comments_meta();
-}
-
-function akismet_check_db_comment( $id, $recheck_reason = 'recheck_queue' ) {
-   	return Akismet::check_db_comment( $id, $recheck_reason );
-}
-
-function akismet_rightnow() {
-	if ( !class_exists( 'Akismet_Admin' ) )
-		return false;
-   
-   	return Akismet_Admin::rightnow_stats();
-}
 
 function akismet_admin_init() {
 	_deprecated_function( __FUNCTION__, '3.0' );
@@ -69,44 +48,7 @@ function akismet_admin_warnings() {
 function akismet_comment_row_action( $a, $comment ) {
 	return Akismet_Admin::comment_row_actions( $a, $comment );
 }
-function akismet_comment_status_meta_box( $comment ) {
-	return Akismet_Admin::comment_status_meta_box( $comment );
-}
-function akismet_comments_columns( $columns ) {
-	_deprecated_function( __FUNCTION__, '3.0' );
 
-	return $columns;
-}
-function akismet_comment_column_row( $column, $comment_id ) {
-	_deprecated_function( __FUNCTION__, '3.0' );
-}
-function akismet_text_add_link_callback( $m ) {
-	return Akismet_Admin::text_add_link_callback( $m );
-}
-function akismet_text_add_link_class( $comment_text ) {
-	return Akismet_Admin::text_add_link_class( $comment_text );
-}
-function akismet_check_for_spam_button( $comment_status ) {
-	return Akismet_Admin::check_for_spam_button( $comment_status );
-}
-function akismet_submit_nonspam_comment( $comment_id ) {
-	return Akismet::submit_nonspam_comment( $comment_id );
-}
-function akismet_submit_spam_comment( $comment_id ) {
-	return Akismet::submit_spam_comment( $comment_id );
-}
-function akismet_transition_comment_status( $new_status, $old_status, $comment ) {
-	return Akismet::transition_comment_status( $new_status, $old_status, $comment );
-}
-function akismet_spam_count( $type = false ) {
-	return Akismet_Admin::get_spam_count( $type );
-}
-function akismet_recheck_queue() {
-	return Akismet_Admin::recheck_queue();
-}
-function akismet_remove_comment_author_url() {
-	return Akismet_Admin::remove_comment_author_url();
-}
 function akismet_add_comment_author_url() {
 	return Akismet_Admin::add_comment_author_url();
 }

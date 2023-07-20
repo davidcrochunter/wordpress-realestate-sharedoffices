@@ -22,33 +22,7 @@ class Akismet_CLI extends WP_CLI_Command {
 	 *
 	 * @alias comment-check
 	 */
-	public function check( $args, $assoc_args ) {
-		foreach ( $args as $comment_id ) {
-			if ( isset( $assoc_args['noaction'] ) ) {
-				// Check the comment, but don't reclassify it.
-				$api_response = Akismet::check_db_comment( $comment_id, 'wp-cli' );
-			}
-			else {
-				$api_response = Akismet::recheck_comment( $comment_id, 'wp-cli' );
-			}
-			
-			if ( 'true' === $api_response ) {
-				WP_CLI::line( sprintf( __( "Comment #%d is spam.", 'akismet' ), $comment_id ) );
-			}
-			else if ( 'false' === $api_response ) {
-				WP_CLI::line( sprintf( __( "Comment #%d is not spam.", 'akismet' ), $comment_id ) );
-			}
-			else {
-				if ( false === $api_response ) {
-					WP_CLI::error( __( "Failed to connect to Akismet.", 'akismet' ) );
-				}
-				else if ( is_wp_error( $api_response ) ) {
-					WP_CLI::warning( sprintf( __( "Comment #%d could not be checked.", 'akismet' ), $comment_id ) );
-				}
-			}
-		}
-	}
-	
+
 	/**
 	 * Recheck all comments in the Pending queue.
 	 *
